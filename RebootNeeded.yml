@@ -16,8 +16,8 @@
         body: {
            'content': "Reboot needed {{ HOSTNAME }}",
            'username': "You humble servant",
-      }
-      status_code: 204  
+        }
+        status_code: 204  
       when: reboot_required.stat.exists  
     - name: Setting stats (not aggregating)
       ansible.builtin.fail:
