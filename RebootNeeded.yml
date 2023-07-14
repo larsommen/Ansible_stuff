@@ -14,5 +14,5 @@
 - name: Setting stats (not aggregating)
   - set_stats:
     data:
-      the_answer: 42
+      the_answer: msg
     aggregate: no
