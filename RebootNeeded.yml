@@ -8,8 +8,16 @@
       stat:
         path: /var/run/reboot-required
       register: reboot_required
-    - debug:
-        msg: "Reboot is required"
+    - name: send message to discord
+      uri:
+        url:  "{{ WEB_HOOK }}"
+        method: 'POST'
+        body_format: json
+        body: {
+           'content': "Reboot needed" + {{ HOSTNAME }},
+           'username': "You humble servant",
+      }
+        
       when: reboot_required.stat.exists  
     - name: Setting stats (not aggregating)
       ansible.builtin.fail:
