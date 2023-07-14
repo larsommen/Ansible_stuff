@@ -14,7 +14,7 @@
         method: 'POST'
         body_format: json
         body: {
-           'content': "Reboot needed" + "{{ HOSTNAME }}",
+           'content': "Reboot needed {{ HOSTNAME }}",
            'username': "You humble servant",
       }
         
