@@ -10,9 +10,7 @@
       register: reboot_required
     - debug:
         msg: "Reboot is required"
+        set_stats:
+          data:
+            expose_to_cloud_redhat_com_favorite_color: "orange"
       when: reboot_required.stat.exists
-    - name: Setting stats (not aggregating)
-      - set_stats:
-        data:
-          the_answer: msg
-        aggregate: no
