@@ -8,7 +8,7 @@
         body: {
            'content': "Panik panik",
            'username': "The bad man",
-         }
-         status_code: 204
+        }
+        status_code: 204
     - name: Pinging
       ansible.builtin.ping:
