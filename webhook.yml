@@ -2,10 +2,10 @@
   tasks:
     - name: Send Discord Message - Basic
       uri:
-         url: "{{ WEB_HOOK }}"
-         method: 'POST'
-         body_format: json
-         body: {
+        url:  "{{ WEB_HOOK }}"
+        method: 'POST'
+        body_format: json
+        body: {
            'content': "Panik panik",
            'username': "The bad man",
            'avatar_url': "<SOME URL TO AN AVATAR>"
