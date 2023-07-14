@@ -2,10 +2,10 @@
 - name: check if system reboot is required
   hosts: all
   become: yes
-  msg: "OK"
   tasks:
     - name: check if system reboot is required
       become: true
+      msg: "OK"
       stat:
         path: /var/run/reboot-required
       register: reboot_required
