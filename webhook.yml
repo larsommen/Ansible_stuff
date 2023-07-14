@@ -1,5 +1,5 @@
 - name: Send Discord Message - Basic
-   uri:
+  uri:
      url: "{{ WEB_HOOK }}"
      method: 'POST'
      body_format: json
