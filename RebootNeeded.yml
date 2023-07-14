@@ -12,7 +12,7 @@
         msg: "Reboot is required"
       when: reboot_required.stat.exists
 - name: Setting stats (not aggregating)
-  ansible.builtin.set_stats:
+  - set_stats:
     data:
-      the_answer: msg
+      the_answer: 42
     aggregate: no
