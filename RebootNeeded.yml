@@ -10,6 +10,8 @@
       register: reboot_required
     - debug:
         msg: "Reboot is required"
+      when: reboot_required.stat.exists
+    - debug:
         set_stats:
           data:
             expose_to_cloud_redhat_com_favorite_color: "orange"
