@@ -9,3 +9,5 @@
            'content': "Panik panik",
            'username': "The bad man",
          }
+    - name: Pinging
+      ansible.builtin.ping:
