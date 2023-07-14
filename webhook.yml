@@ -8,5 +8,4 @@
         body: {
            'content': "Panik panik",
            'username': "The bad man",
-           'avatar_url': "<SOME URL TO AN AVATAR>"
          }
