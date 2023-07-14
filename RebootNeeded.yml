@@ -11,8 +11,8 @@
     - debug:
         msg: "Reboot is required"
       when: reboot_required.stat.exists
-- name: Setting stats (not aggregating)
-  - set_stats:
-    data:
-      the_answer: msg
-    aggregate: no
+    - name: Setting stats (not aggregating)
+      - set_stats:
+        data:
+          the_answer: msg
+        aggregate: no
