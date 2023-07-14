@@ -1,6 +1,6 @@
 - name: Send Discord Message - Basic
    uri:
-     url: {{webhook}}
+     url: "{{ webhook }}"
      method: 'POST'
      body_format: json
      body: {
