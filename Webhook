@@ -1,0 +1,10 @@
+- name: Send Discord Message - Basic
+   uri:
+     url: {{webhook}}
+     method: 'POST'
+     body_format: json
+     body: {
+       'content': "Panik panik",
+       'username': "The bad man",
+       'avatar_url': "<SOME URL TO AN AVATAR>"
+     }
