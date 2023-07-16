@@ -14,7 +14,11 @@
     - set_fact: 
         uptime={{ uptime.stdout }}
 
+    - name: Prints two lines of messages, but only if there is an environment value set
+      ansible.builtin.debug:
+        msg: "Server has been up for {{ uptime }} days"
+
       
     - debug:
-        msg: "Not enough free mem {{ ansible_memtotal_mb }} and server has been running for {{ uptime }}"
+        msg: "Not enough free mem {{ ansible_memtotal_mb }}"
       when: ansible_memtotal_mb < 900
