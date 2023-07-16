@@ -16,5 +16,5 @@
 
       
     - debug:
-      msg: "Not enough free mem {{ ansible_memtotal_mb }} and server has been running for {{ uptime }}"
+        msg: "Not enough free mem {{ ansible_memtotal_mb }} and server has been running for {{ uptime }}"
       when: ansible_memtotal_mb < 900
