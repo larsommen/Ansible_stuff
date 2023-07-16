@@ -1,6 +1,6 @@
 ---
 - hosts: all
   tasks:
-  - name: display ansible_mounts
+  - name: display homeNetwork
     debug:
-      var: ansible_mounts
+      var: homeNetwork
