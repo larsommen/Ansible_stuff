@@ -12,7 +12,7 @@
 
 
     - set_fact: 
-      uptime={{ uptime.stdout }}
+        uptime={{ uptime.stdout }}
 
       
     - debug:
