@@ -8,7 +8,7 @@
       stat:
         path: /var/run/reboot-required
       register: reboot_required
-    - name: send message to discord
+    - name: send message to discord on reboot required
       uri:
         url:  "{{ WEB_HOOK }}"
         method: 'POST'
@@ -19,7 +19,7 @@
         }
         status_code: 204  
       when: reboot_required.stat.exists  
-    - name: Setting stats (not aggregating)
+    - name: Setting failed state on reboot required
       ansible.builtin.fail:
         msg: "Reboot is required"
       when: reboot_required.stat.exists
