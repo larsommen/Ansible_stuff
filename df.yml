@@ -21,4 +21,4 @@
       
     - debug:
         msg: "Not enough free mem {{ ansible_memtotal_mb }}"
-      when: ansible_memtotal_mb < 900
+      when: ansible_memtotal_mb < 200
