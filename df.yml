@@ -4,6 +4,10 @@
     - name: Print all available facts
       ansible.builtin.debug:
         var: ansible_memtotal_mb
+     - name: get uptime
+      shell: /usr/bin/uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'
+      changed_when: False
+      register: uptime
     - debug:
-        msg: "Not enough free mem ansibel_memtotal_mb"
-      when: ansible_memtotal_mb < 800
+        msg: "Not enough free mem {{ ansibel_memtotal_mb }} and server has been running for {{ uptime }}"
+      when: ansible_memtotal_mb < 900
