@@ -3,14 +3,10 @@
   
   tasks:
     - name: APT Package List Updater
+      become: true
       apt:
-        become: true
-        become_method: sudo
         update_cache: yes
         cache_valid_time: 3600
     - name: APT Package Upgrader
       apt:
         upgrade: yes
-        become: true
-        become_method: sudo
-      
