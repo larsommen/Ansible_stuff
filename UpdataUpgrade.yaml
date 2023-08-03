@@ -2,11 +2,6 @@
 - hosts: all
   
   tasks:
-    - name: packages | ensure apt list dir exists
-      file:
-        path: /var/lib/apt/lists/
-        state: directory
-        mode: 0777
     - name: APT Package List Updater
       become: true
       apt:
