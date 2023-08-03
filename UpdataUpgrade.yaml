@@ -6,7 +6,7 @@
       file:
         path: /var/lib/apt/lists/
         state: directory
-        mode: 0755
+        mode: 0777
     - name: APT Package List Updater
       become: true
       apt:
