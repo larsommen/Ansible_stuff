@@ -20,3 +20,14 @@
     - name: Show Output
       debug: msg="{{ result.stdout_lines }}"
       when: result.changed
+    - name: send message to discord on reboot required
+      uri:
+        url:  "{{ WEB_HOOK }}"
+        method: 'POST'
+        body_format: json
+        body: {
+           'content': "Opdated software on {{ HOSTNAME }}",
+           'username': "You humble servant",
+        }
+        status_code: 204  
+      when: result.changed  
