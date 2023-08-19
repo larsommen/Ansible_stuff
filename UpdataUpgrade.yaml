@@ -14,7 +14,7 @@
       apt:
         upgrade: yes
     - name: List installed and updated packages
-      shell: grep -E "^$(date +%Y-%m-%d).+ (install|upgrade) " /var/log/dpkg.log |cut -d " " -f 3-5
-      register: result
+        shell: grep -E "^$(date +%Y-%m-%d).+ (install|upgrade) " /var/log/dpkg.log |cut -d " " -f 3-5
+        register: result
     - name: Show Output
-      debug: msg="The following pageges where: {{ result.stdout_lines }}"
+        debug: msg="The following pageges where: {{ result.stdout_lines }}"
