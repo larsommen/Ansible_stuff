@@ -19,4 +19,4 @@
       register: result
     - name: Show Output
       debug: msg="{{ result.stdout_lines }}"
-      when: changed
+#      when: changed
