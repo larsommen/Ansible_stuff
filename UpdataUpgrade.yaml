@@ -14,12 +14,9 @@
       apt:
         upgrade: yes
       register: result
-#    - name: List installed and updated packages
-#      shell: grep -E "^$(date +%Y-%m-%d).+ (install|upgrade) ' /var/log/dpkg.log' "
-#      register: output
-#    - name: Show Output
-#      debug: msg="{{ result.stdout_lines }}"
-#      when: result.changed
+    - name: Show Output
+      debug: msg="{{ result.stdout_lines }}"
+      when: result.changed
     - name: send message to discord on reboot required
       uri:
         url:  "{{ WEB_HOOK }}"
