@@ -16,7 +16,7 @@
       register: result
     - name: List installed and updated packages
       shell: grep -E "^$(date +%Y-%m-%d).+ (install|upgrade) ' /var/log/dpkg.log' "
-      register: result
+      register: output
     - name: Show Output
       debug: msg="{{ result.stdout_lines }}"
       when: result.changed
