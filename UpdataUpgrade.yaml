@@ -17,7 +17,7 @@
     - name: Show Output
       debug: msg="{{ result.stdout_lines }}"
       when: result.changed
-    - name: send message to discord on reboot required
+    - name: Send message to discord on software upgrated
       uri:
         url:  "{{ WEB_HOOK }}"
         method: 'POST'
