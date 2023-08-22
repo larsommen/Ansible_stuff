@@ -5,6 +5,6 @@
       ansible.builtin.debug:
        info: "this is a line"
        arr: "{{ info.split(' ') }}"
-      inodes: "{{ arr[0] }} available on {{hostname}}"
+  
     - debug:
-      msg: "{{inodes}}"
+      msg: "{{ arr[0] }} available on {{hostname}}"
