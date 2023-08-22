@@ -4,6 +4,6 @@
     - name: Get information
       ansible.builtin.stat:
         path: /
-        res: inode  
+        register: res  
     - debug:
-        msg: "{{ res }} available on {{hostname}}"
+        msg: "{{ res.inode }} available on {{hostname}}"
