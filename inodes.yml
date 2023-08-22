@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
     - name: Get information
-      shell: /usr/bin/df -ih
+      shell: /usr/bin/df -ih | grep -ohe '%' | sed 's/,//g' | awk '{ print $1" "$4 }'
       changed_when: False
       register: inodes
   
