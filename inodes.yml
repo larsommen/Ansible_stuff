@@ -3,8 +3,8 @@
   tasks:
     - name: Get information
       ansible.builtin.debug:
-       info: "this is a line"
-       arr: "{{ info.split(' ') }}"
+       tekst: "this is a line"
+       arr: "{{ tekst.split(' ') }}"
   
     - debug:
         msg: "{{ arr[0] }} available on {{hostname}}"
