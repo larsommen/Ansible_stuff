@@ -2,10 +2,8 @@
 - hosts: all
   tasks:
     - name: Get information
-      vars:
-       tekst: "this is a line"
-      vars:
-       arr: "{{ tekst.split(' ') }}"
-  
+      ansible.builtin.stat.inode:
+        path: /
+        register: res  
     - debug:
-        msg: "{{ arr[0] }} available on {{hostname}}"
+        msg: "{{ res }} available on {{hostname}}"
