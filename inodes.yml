@@ -2,8 +2,9 @@
 - hosts: all
   tasks:
     - name: Get information
-      ansible.builtin.stat:
-        path: /
-      register: res  
+      shell: /usr/bin/df -ih
+      changed_when: False
+      register: inodes
+  
     - debug:
-        msg: "{{ res.stat.inode }} available on {{ HOSTNAME }}"
+        msg: "{{ inodes }} available on {{ HOSTNAME }}"
