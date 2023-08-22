@@ -1,9 +1,9 @@
 ---
 - hosts: all
   tasks:
-    - name: Get info
+  - name: Get info
       info: "this is a line"
-      arr: "{{ info.split('=') }}"
+      arr: "{{ info.split(' ') }}"
       inodes: "{{ arr[0] }} available on {{hostname}}"
     - debug:
       msg: "{{inodes}}"
