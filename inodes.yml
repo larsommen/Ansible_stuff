@@ -2,9 +2,9 @@
 - hosts: all
   tasks:
     - name: Get information
-      ansible.builtin.debug:
-       tekst: "this is a line"
-       arr: "{{ tekst.split(' ') }}"
+      set_fact:
+       - tekst: "this is a line"
+       - arr: "{{ tekst.split(' ') }}"
   
     - debug:
         msg: "{{ arr[0] }} available on {{hostname}}"
