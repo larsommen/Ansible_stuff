@@ -2,8 +2,8 @@
 - hosts: all
   tasks:
     - name: Get information
-      ansible.builtin.stat.inode:
+      ansible.builtin.stat:
         path: /
-        register: res  
+        res: inode  
     - debug:
         msg: "{{ res }} available on {{hostname}}"
