@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
     - name: Get information
-      set_fact:
+      vars:
        - tekst: "this is a line"
        - arr: "{{ tekst.split(' ') }}"
   
