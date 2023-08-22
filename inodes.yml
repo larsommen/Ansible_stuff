@@ -1,6 +1,6 @@
 ---
 - hosts: all
-   tasks:
+  tasks:
     - name: Get info   
       info: "this is a line"
       arr: "{{ string.split('=') }}"
