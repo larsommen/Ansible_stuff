@@ -6,4 +6,4 @@
         path: /
       register: res  
     - debug:
-        msg: "{{ res.stat.inode }} available on {{hostname}}"
+        msg: "{{ res.stat.inode }} available on {{ HOSTNAME }}"
