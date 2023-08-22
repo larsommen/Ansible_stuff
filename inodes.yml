@@ -1,0 +1,12 @@
+---
+
+---
+- hosts: all
+  tasks:
+    - name: Get info
+      info: "this is a line"
+      arr: "{{ string.split('=') }}"
+      inodes: "{{ arr[0] }}"
+
+    - debug:
+      msg: "{{inodes}}"
