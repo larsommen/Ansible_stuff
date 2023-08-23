@@ -9,5 +9,5 @@
       set_fact:
         inodes: "{{ inodes.stdout | split }}"
     - debug:
-        msg: "1K-blocks: {{ inodes[0] }}  Used {{ inodes[1] }} Available {{ inodes[2] }} Use% {{ inodes[3] }} on {{ HOSTNAME }}"
+        msg: "1K-blocks: {{ inodes[1] }}  Used {{ inodes[2] }} Available {{ inodes[3] }} Use% {{ inodes[4] }} on {{ HOSTNAME }}"
 #         msg: "{{ inodes.stdout }}"
