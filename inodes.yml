@@ -1,17 +1,15 @@
 ---
 - hosts: all
   tasks:
-    - name: Get information
+    - name: Get info on bloks
       shell: /usr/bin/df --total | tail -n 1
       changed_when: False
       register: bloks
     - name: Splitting result
       set_fact:
         bloks: "{{ bloks.stdout | split }}"
-    - debug:
-        msg: "1K-blocks: {{ bloks[1] }}  Used {{ bloks[2] }} Available {{ bloks[3] }} Use% {{ bloks[4] }} on {{ HOSTNAME }}"
 
-    - name: Get information
+    - name: Get info on inodes
       shell: /usr/bin/df  / -i | tail -n 1
       changed_when: False
       register: inodes
