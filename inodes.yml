@@ -7,4 +7,4 @@
       register: inodes
   
     - debug:
-        msg: "{{ inodes }} available on {{ HOSTNAME }}"
+        msg: "{{ inodes.stdout_lines }} available on {{ HOSTNAME }}"
