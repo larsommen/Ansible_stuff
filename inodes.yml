@@ -4,10 +4,19 @@
     - name: Get information
       shell: /usr/bin/df --total | tail -n 1
       changed_when: False
+      register: bloks
+    - name: Splitting result
+      set_fact:
+        bloks: "{{ bloks.stdout | split }}"
+    - debug:
+        msg: "1K-blocks: {{ bloks[1] }}  Used {{ bloks[2] }} Available {{ bloks[3] }} Use% {{ bloks[4] }} on {{ HOSTNAME }}"
+
+    - name: Get information
+      shell: /usr/bin/df  / -i
+      changed_when: False
       register: inodes
     - name: Splitting result
       set_fact:
         inodes: "{{ inodes.stdout | split }}"
     - debug:
         msg: "1K-blocks: {{ inodes[1] }}  Used {{ inodes[2] }} Available {{ inodes[3] }} Use% {{ inodes[4] }} on {{ HOSTNAME }}"
-#         msg: "{{ inodes.stdout }}"
