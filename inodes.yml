@@ -12,7 +12,7 @@
         msg: "1K-blocks: {{ bloks[1] }}  Used {{ bloks[2] }} Available {{ bloks[3] }} Use% {{ bloks[4] }} on {{ HOSTNAME }}"
 
     - name: Get information
-      shell: /usr/bin/df  / -i
+      shell: /usr/bin/df  / -i | tail -n 1
       changed_when: False
       register: inodes
 #    - name: Splitting result
