@@ -5,8 +5,9 @@
       shell: /usr/bin/df --total | tail -n 1
       changed_when: False
       register: inodes
-    - name: Splitting result
-      set_fact:
-        inodes: "{{ inodes[0] | split }}"
+#    - name: Splitting result
+#      set_fact:
+#        inodes: "{{ inodes[0] | split }}"
     - debug:
-        msg: "1K-blocks: {{ inodes[0] }}  Used {{ inodes[1] }} Available {{ inodes[2] }} Use% {{ inodes[3] }} on {{ HOSTNAME }}"
+ #       msg: "1K-blocks: {{ inodes[0] }}  Used {{ inodes[1] }} Available {{ inodes[2] }} Use% {{ inodes[3] }} on {{ HOSTNAME }}"
+         msg: inodes[0]
