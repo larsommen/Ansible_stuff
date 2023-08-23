@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
     - name: Get information
-      shell: /usr/bin/df -ih | grep -ohe '%' 
+      shell: /usr/bin/df --total | tail -n 1
       changed_when: False
       register: inodes
   
