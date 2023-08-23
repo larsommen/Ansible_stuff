@@ -7,6 +7,6 @@
       register: inodes
     - name: Splitting result
       set_fact:
-        inodes: "{{ inodes | join '' | split }}"
+        inodes: "{{ inodes[0] | split }}"
     - debug:
         msg: "1K-blocks: {{ inodes[0] }}  Used {{ inodes[1] }} Available {{ inodes[2] }} Use% {{ inodes[3] }} on {{ HOSTNAME }}"
