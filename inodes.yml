@@ -19,5 +19,7 @@
       set_fact:
         inodes: "{{ inodes.stdout | split }}"
     - debug:
-        msg: "Total inodes: {{ inodes[1] }}  Used {{ inodes[2] }} Available {{ inodes[3] }} Use% {{ inodes[4] }} on {{ HOSTNAME }} \n 1K-blocks: {{ bloks[1] }}  Used {{ bloks[2] }} Available {{ bloks[3] }} Use% {{ bloks[4] }} on {{ HOSTNAME }}"
+        msg: |
+        "Total inodes: {{ inodes[1] }}  Used {{ inodes[2] }} Available {{ inodes[3] }} Use% {{ inodes[4] }} on {{ HOSTNAME }} "
+        "Total 1K-blocks: {{ bloks[1] }}  Used {{ bloks[2] }} Available {{ bloks[3] }} Use% {{ bloks[4] }} on {{ HOSTNAME }}"
 
