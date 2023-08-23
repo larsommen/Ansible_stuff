@@ -6,7 +6,6 @@
       changed_when: False
       register: inodes
     - name: Splitting result
-      vars:
-        res: "{{ inodes | split}}"
+      inodes: "{{ inodes | split }}"
     - debug:
-        msg: "1K-blocks: {{ res[0] }}  Used {{ res[1] }} Available {{ res[2] }} Use% {{ res[3] }} on {{ HOSTNAME }}"
+        msg: "1K-blocks: {{ inodes[0] }}  Used {{ inodes[1] }} Available {{ inodes[2] }} Use% {{ inodes[3] }} on {{ HOSTNAME }}"
