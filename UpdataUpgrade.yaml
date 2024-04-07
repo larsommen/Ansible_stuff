@@ -39,4 +39,4 @@
             'content': "Error on update of {{ HOSTNAME }}",
             'username': "You humble servant",
              }
-      when: "'FAILED' in command_result.stderr"
+      when: "'FAILED' in result.stderr"
