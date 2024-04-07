@@ -29,14 +29,14 @@
         status_code: 204  
       when: result.changed  
     - name: Example using fail and when together
-      ansible.builtin.fail:
-      msg: Error when trying to updata/upgrade
-      uri:
-        url:  "{{ WEB_HOOK }}"
-        method: 'POST'
-        body_format: json
-        body: {
-           'content': "Error on update of {{ HOSTNAME }}",
-           'username': "You humble servant",
-        }
-      when: cmdb_status != "to-be-staged"
+        ansible.builtin.fail:
+          msg: Error when trying to updata/upgrade
+          uri:
+            url:  "{{ WEB_HOOK }}"
+            method: 'POST'
+            body_format: json
+            body: {
+               'content': "Error on update of {{ HOSTNAME }}",
+               'username': "You humble servant",
+            }
+          when: cmdb_status != "to-be-staged"
