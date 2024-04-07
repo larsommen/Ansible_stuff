@@ -39,4 +39,4 @@
             'content': "Error on update of {{ HOSTNAME }}",
             'username': "You humble servant",
              }
-      when: "'FAILED' in result.stderr"
+      when: "'Failed' or 'UNREACHEBLE' in result.stderr"
