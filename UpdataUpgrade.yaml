@@ -17,8 +17,8 @@
     - name: Show Output
       debug: msg="{{ HOSTNAME }} {{ result.stdout_lines }}"
       when: result.changed
-    - name: Show Output
-      debug: msg="{{ HOSTNAME }}: no change"
+    - name: Show positive Output
+      debug: msg="{{ HOSTNAME }}"": no change"
       when: not result.changed
     - name: Send message to discord on software upgrated
       uri:
