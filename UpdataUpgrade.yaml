@@ -15,7 +15,7 @@
         upgrade: yes
       register: result
     - name: Show Output
-      debug: msg="{{ result.stdout_lines }}"
+      debug: msg="{{ HOSTNAME }} {{ result.stdout_lines }}"
       when: result.changed
     - name: Send message to discord on software upgrated
       uri:
@@ -23,7 +23,7 @@
         method: 'POST'
         body_format: json
         body: {
-           'content': "Opdated software on {{ HOSTNAME }}",
+           'content': "{{ HOSTNAME }}: Opdated software",
            'username': "You humble servant",
         }
         status_code: 204  
@@ -36,7 +36,7 @@
           method: 'POST'
           body_format: json
           body: {
-            'content': "Error on update of {{ HOSTNAME }}",
+            'content': "{{ HOSTNAME }}: Error on update",
             'username': "You humble servant",
              }
       when: "'FAILED' in result"
