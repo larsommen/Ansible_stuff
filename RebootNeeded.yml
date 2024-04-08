@@ -14,7 +14,7 @@
         method: 'POST'
         body_format: json
         body: {
-           'content': "Reboot needed {{ HOSTNAME }}",
+           'content': "{{ HOSTNAME }} Reboot needed",
            'username': "You humble servant",
         }
         status_code: 204  
