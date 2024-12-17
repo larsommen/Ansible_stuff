@@ -23,7 +23,7 @@
       ansible.builtin.fail:
         msg: "{{ HOSTNAME }} Reboot is required"
       when: reboot_required.stat.exists
-    - debug:
+    - name: sending complete list of failing hosts
       ansible.builtin.fail:
         msg: "{{ ansible_play_hosts | map('extract', hostvars) | map(attribute='stdout') | list }}"
       run_once: yes
