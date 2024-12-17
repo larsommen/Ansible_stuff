@@ -19,10 +19,10 @@
         }
         status_code: 204  
       when: reboot_required.stat.exists  
-    - name: Setting failed state on reboot required
-      ansible.builtin.fail:
-        msg: "{{ HOSTNAME }} Reboot is required"
-      when: reboot_required.stat.exists
+#    - name: Setting failed state on reboot required
+#      ansible.builtin.fail
+#         msg: "{{ HOSTNAME }} Reboot is required"
+#      when: reboot_required.stat.exists
     - name: sending complete list of failing hosts
       ansible.builtin.fail:
         msg: "{{ ansible_play_hosts | map('extract', hostvars) | map(attribute='stdout') | list }}"
