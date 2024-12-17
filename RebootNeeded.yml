@@ -24,5 +24,6 @@
         msg: "{{ HOSTNAME }} Reboot is required"
       when: reboot_required.stat.exists
     - debug:
-        msg: "{{ ansible_play_hosts | map('extract', hostvars, 'date_res') | map(attribute='stdout') | list }}"
+      ansible.builtin.fail:
+        msg: "{{ ansible_play_hosts | map('extract', hostvars) | map(attribute='stdout') | list }}"
       run_once: yes
