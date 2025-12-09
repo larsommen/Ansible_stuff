@@ -40,47 +40,47 @@
       with_items: '{{ groups["managers"] + groups["workers"] }}'
 
 
-  # tasks:
-  #  - name: Join other managers to swarm (if any)
-  #    hosts: managers
-  #    become: yes
-  #    gather_facts: no
-  #
-  #    vars:
-  #      manager_ip: "{{ hostvars[groups['managers'][0]].ansible_host | default(groups['managers'][0]) }}"
+   tasks:
+    - name: Join other managers to swarm (if any)
+      hosts: managers
+      become: yes
+      gather_facts: no
+  
+      vars:
+        manager_ip: "{{ hostvars[groups['managers'][0]].ansible_host | default(groups['managers'][0]) }}"
 
-  #  - name: Check if already in swarm
-  #    command: docker info --format '{{ "{{.Swarm.LocalNodeState}}" }}'
-  #    register: swarm_info
-  #    failed_when: false
-  #    changed_when: false
+    - name: Check if already in swarm
+      command: docker info --format '{{ "{{.Swarm.LocalNodeState}}" }}'
+      register: swarm_info
+      failed_when: false
+      changed_when: false
 
-  #  - name: Join additional managers to swarm
-  #    command: >
-  #      docker swarm join
-  #      --token {{ swarm_manager_token }}
-  #      {{ manager_ip }}:2377
-  #    when:
-  #      - inventory_hostname != groups['managers'][0]
-  #      - swarm_info.stdout != "active"
+    - name: Join additional managers to swarm
+      command: >
+        docker swarm join
+        --token {{ swarm_manager_token }}
+        {{ manager_ip }}:2377
+      when:
+        - inventory_hostname != groups['managers'][0]
+        - swarm_info.stdout != "active"
 
-  #  - name: Join workers to swarm
-  #    hosts: workers
-  #    become: yes
-  #    gather_facts: no
+    - name: Join workers to swarm
+      hosts: workers
+      become: yes
+      gather_facts: no
     
-  #    vars:
-  #      manager_ip: "{{ hostvars[groups['managers'][0]].ansible_host | default(groups['managers'][0]) }}"
+      vars:
+        manager_ip: "{{ hostvars[groups['managers'][0]].ansible_host | default(groups['managers'][0]) }}"
 
-  #  - name: Check if already in swarm
-  #    command: docker info --format '{{ "{{.Swarm.LocalNodeState}}" }}'
-  #    register: swarm_info
-  #    failed_when: false
-  #    changed_when: false
+    - name: Check if already in swarm
+      command: docker info --format '{{ "{{.Swarm.LocalNodeState}}" }}'
+      register: swarm_info
+      failed_when: false
+      changed_when: false
 
-  #  - name: Join workers to swarm
-  #    command: >
-  #      docker swarm join
-  #      --token {{ swarm_worker_token }}
-  #      {{ manager_ip }}:2377
-  #    when: swarm_info.stdout != "active"
+    - name: Join workers to swarm
+      command: >
+        docker swarm join
+        --token {{ swarm_worker_token }}
+        {{ manager_ip }}:2377
+      when: swarm_info.stdout != "active"
