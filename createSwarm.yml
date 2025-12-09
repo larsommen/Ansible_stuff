@@ -37,7 +37,7 @@
         swarm_worker_token: '{{ hostvars[groups["managers"][0]].worker_token.stdout }}'
       run_once: true
       delegate_to: "{{ item }}"
-      with_items: "{{ groups['managers'] + groups[workers'] }}"
+      with_items: '{{ groups["managers"] + groups[workers'] }}'
 
 
   # tasks:
