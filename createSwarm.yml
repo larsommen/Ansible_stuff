@@ -39,6 +39,8 @@
         delegate_to: "{{ item }}"
       with_items: "{{ groups['managers'] + groups[workers'] }}"
 
+
+  tasks:
     - name: Join other managers to swarm (if any)
       hosts: managers
       become: yes
