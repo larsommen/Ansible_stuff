@@ -24,12 +24,12 @@
     - name: Get manager join token
       command: docker swarm join-token -q manager
       register: manager_token
-      when: inventory_hostname == groups['Internals.managers'][0]
+      when: inventory_hostname == groups['Internals'][0]
 
     - name: Get worker join token
       command: docker swarm join-token -q worker
       register: worker_token
-      when: inventory_hostname == groups['Internals.managers'][0]
+      when: inventory_hostname == groups['Internals'][0]
 
     - name: Set swarm tokens as facts on all hosts
       set_fact:
@@ -37,7 +37,7 @@
         swarm_worker_token: '{{ hostvars[groups["managers"][0]].worker_token.stdout }}'
 #        run_once: true
 #        delegate_to: "{{ item }}"
-      with_items: '{{ groups["Internals.managers"] + groups["Internals.workers"] }}'
+      with_items: '{{ groups["managers"] + groups["workers"] }}'
 
 
  
