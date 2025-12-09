@@ -18,18 +18,18 @@
     - name: Initialize swarm on first manager if not already part of a swarm
       command: docker swarm init --advertise-addr {{ advertise_addr }}
       when:
-        - inventory_hostname == groups['managers'][0]
+        - inventory_hostname == groups['Internals'][0]
         - swarm_info.stdout != "active"
 
     - name: Get manager join token
       command: docker swarm join-token -q manager
       register: manager_token
-      when: inventory_hostname == groups['managers'][0]
+      when: inventory_hostname == groups['Internals.managers'][0]
 
     - name: Get worker join token
       command: docker swarm join-token -q worker
       register: worker_token
-      when: inventory_hostname == groups['managers'][0]
+      when: inventory_hostname == groups['Internals.managers'][0]
 
     - name: Set swarm tokens as facts on all hosts
       set_fact:
@@ -37,50 +37,7 @@
         swarm_worker_token: '{{ hostvars[groups["managers"][0]].worker_token.stdout }}'
 #        run_once: true
 #        delegate_to: "{{ item }}"
-      with_items: '{{ groups["managers"] + groups["workers"] }}'
+      with_items: '{{ groups["Internals.managers"] + groups["Internals.workers"] }}'
 
 
-   tasks:
-    - name: Join other managers to swarm (if any)
-      hosts: managers
-      become: yes
-      gather_facts: no
-  
-      vars:
-        manager_ip: "{{ hostvars[groups['managers'][0]].ansible_host | default(groups['managers'][0]) }}"
-
-    - name: Check if already in swarm
-      command: docker info --format '{{ "{{.Swarm.LocalNodeState}}" }}'
-      register: swarm_info
-      failed_when: false
-      changed_when: false
-
-    - name: Join additional managers to swarm
-      command: >
-        docker swarm join
-        --token {{ swarm_manager_token }}
-        {{ manager_ip }}:2377
-      when:
-        - inventory_hostname != groups['managers'][0]
-        - swarm_info.stdout != "active"
-
-    - name: Join workers to swarm
-      hosts: workers
-      become: yes
-      gather_facts: no
-    
-      vars:
-        manager_ip: "{{ hostvars[groups['managers'][0]].ansible_host | default(groups['managers'][0]) }}"
-
-    - name: Check if already in swarm
-      command: docker info --format '{{ "{{.Swarm.LocalNodeState}}" }}'
-      register: swarm_info
-      failed_when: false
-      changed_when: false
-
-    - name: Join workers to swarm
-      command: >
-        docker swarm join
-        --token {{ swarm_worker_token }}
-        {{ manager_ip }}:2377
-      when: swarm_info.stdout != "active"
+ 
