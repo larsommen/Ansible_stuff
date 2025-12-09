@@ -24,12 +24,12 @@
     - name: Get manager join token
       command: docker swarm join-token -q manager
       register: manager_token
-      when: inventory_hostname == groups['Internals'][0]
+      when: inventory_hostname == groups['managers'][0]
 
     - name: Get worker join token
       command: docker swarm join-token -q worker
       register: worker_token
-      when: inventory_hostname == groups['Internals'][0]
+      when: inventory_hostname == groups['managers'][0]
 
     - name: Set swarm tokens as facts on all hosts
       set_fact:
