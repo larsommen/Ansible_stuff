@@ -1,6 +1,6 @@
 ---
 - name: Initialize Docker Swarm on the first manager
-  hosts: managers
+  hosts: Internals
   become: yes
   gather_facts: no
   any_errors_fatal: true
