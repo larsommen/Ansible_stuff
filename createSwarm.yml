@@ -39,15 +39,14 @@
       delegate_to: "{{ item }}"
       with_items: "{{ groups['managers'] + groups[workers'] }}"
 
-      - name: Join other managers to swarm (if any)
-        hosts: managers
-        become: yes
-        gather_facts: no
+    - name: Join other managers to swarm (if any)
+      hosts: managers
+      become: yes
+      gather_facts: no
 
-  vars:
-    manager_ip: "{{ hostvars[groups['managers'][0]].ansible_host | default(groups['managers'][0]) }}"
+      vars:
+        manager_ip: "{{ hostvars[groups['managers'][0]].ansible_host | default(groups['managers'][0]) }}"
 
-  tasks:
     - name: Check if already in swarm
       command: docker info --format '{{ "{{.Swarm.LocalNodeState}}" }}'
       register: swarm_info
