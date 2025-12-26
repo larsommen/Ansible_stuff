@@ -3,31 +3,31 @@
   hosts: managers
   become: no
   tasks:
-  - name: Initialize swarm on first manager
-    command: "docker swarm init --advertise-addr {{ ansible_host }}"
-    run_once: true
-  
-  - name: Retrieve manager join token
-    command: "docker swarm join-token manager -q"
-    register: manager_token
-    run_once: true
-  
-  - name: Retrieve worker join token
-    command: "docker swarm join-token worker -q"
-    register: worker_token
-    run_once: true
-  
-  - name: Set manager join token as a fact
-    set_fact:
-      manager_join_command: "docker swarm join --token {{ manager_token.stdout }} {{ ansible_host }}:2377"
-  
-  - name: Set worker join token as a fact
-    set_fact:
-      worker_join_command: "docker swarm join --token {{ worker_token.stdout }} {{ ansible_host }}:2377"
-  
-  - name: Join workers to the Swarm cluster
-  hosts: workers
-  become: yes
-  tasks:
-  - name: Join swarm as worker
-    command: "{{ hostvars[groups['managers'][0]]['worker_join_command'] }}" 
+    - name: Initialize swarm on first manager
+      command: "docker swarm init --advertise-addr {{ ansible_host }}"
+      run_once: true
+    
+    - name: Retrieve manager join token
+      command: "docker swarm join-token manager -q"
+      register: manager_token
+      run_once: true
+    
+    - name: Retrieve worker join token
+      command: "docker swarm join-token worker -q"
+      register: worker_token
+      run_once: true
+    
+    - name: Set manager join token as a fact
+      set_fact:
+        manager_join_command: "docker swarm join --token {{ manager_token.stdout }} {{ ansible_host }}:2377"
+    
+    - name: Set worker join token as a fact
+      set_fact:
+        worker_join_command: "docker swarm join --token {{ worker_token.stdout }} {{ ansible_host }}:2377"
+    
+    - name: Join workers to the Swarm cluster
+      hosts: workers
+      become: no
+      tasks:
+        - name: Join swarm as worker
+          command: "{{ hostvars[groups['managers'][0]]['worker_join_command'] }}" 
