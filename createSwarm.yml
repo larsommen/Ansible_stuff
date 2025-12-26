@@ -31,3 +31,10 @@
   tasks:
     - name: Join swarm as manager
       command: "{{ hostvars[groups['managers'][0]]['manager_join_command'] }}"
+
+- name: Join workers to the Swarm cluster
+  hosts: workers
+  become: yes
+  tasks:
+    - name: Join swarm as worker
+      command: "{{ hostvars[groups['managers'][0]]['worker_join_command'] }}"
