@@ -25,9 +25,9 @@
       set_fact:
         worker_join_command: "docker swarm join --token {{ worker_token.stdout }} {{ ansible_host }}:2377"
     
-    - name: Join workers to the Swarm cluster
-      hosts: workers
-      become: no
-      tasks:
-        - name: Join swarm as worker
-          command: "{{ hostvars[groups['managers'][0]]['worker_join_command'] }}" 
+  - name: Join workers to the Swarm cluster
+    hosts: workers
+    become: no
+    tasks:
+      - name: Join swarm as worker
+        command: "{{ hostvars[groups['managers'][0]]['worker_join_command'] }}" 
