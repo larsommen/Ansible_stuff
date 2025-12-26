@@ -24,4 +24,10 @@
     - name: Set worker join token as a fact
       set_fact:
         worker_join_command: "docker swarm join --token {{ worker_token.stdout }} {{ ansible_host }}:2377"
-    
+
+- name: Join additional managers to the Swarm cluster
+  hosts: managers[1:]
+  become: no
+  tasks:
+    - name: Join swarm as manager
+      command: "{{ hostvars[groups['managers'][0]]['manager_join_command'] }}"
