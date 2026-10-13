@@ -21,6 +21,7 @@
       debug: msg="{{ HOSTNAME }} no change"
       when: not result.changed
     - name: Send message to discord on software upgrated
+      no_log: true
       uri:
         url:  "{{ WEB_HOOK }}"
         method: 'POST'
