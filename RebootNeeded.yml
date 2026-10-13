@@ -9,6 +9,7 @@
         path: /var/run/reboot-required
       register: reboot_required
     - name: send message to discord on reboot required
+      no_log: true
       uri:
         url:  "{{ WEB_HOOK }}"
         method: 'POST'
