@@ -1,6 +1,7 @@
 - hosts: all
   tasks:
     - name: Send Discord Message - Basic
+      no_log: true
       uri:
         url:  "{{ WEB_HOOK }}"
         method: 'POST'
